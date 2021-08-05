@@ -19,9 +19,5 @@ export class BaseCommand implements IBaseCommand {
     );
   }
 
-  protected getMessage(str: string): string {
-    return str.substring((commandNameRegex.exec(str)[0] ?? '').length)?.trim();
-  }
-
   private _action: (...props: any) => void;
 }
