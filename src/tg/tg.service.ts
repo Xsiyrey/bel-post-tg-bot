@@ -36,16 +36,14 @@ export class TgService {
 
   private set(ctx: any, messageParser: TgMessageParserService) {
     const mes = messageParser.getMessage(ctx.message.text);
-    if (mes)
-      if (!params.some(x => x.chatId === ctx.chat.id && x.number === mes))
-        params.push({ chatId: ctx.chat.id, number: mes })
+    if (mes && !params.some(x => x.chatId === ctx.chat.id && x.number === mes))
+      params.push({ chatId: ctx.chat.id, number: mes })
   }
 
   private remove(ctx: any, messageParser: TgMessageParserService) {
     const mes = messageParser.getMessage(ctx.message.text);
-    if (mes)
-      if (params.some(x => x.chatId === ctx.chat.id && x.number === mes))
-        params.splice(params.findIndex(x => x.chatId === ctx.chat.id && x.number === mes), 1);
+    if (mes && params.some(x => x.chatId === ctx.chat.id && x.number === mes))
+      params.splice(params.findIndex(x => x.chatId === ctx.chat.id && x.number === mes), 1);
   }
 
   private list(ctx: any) {
